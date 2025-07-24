@@ -59,7 +59,15 @@ class ExtratoNfce:
             return resultados
 
 
-
+def selecionar_pasta():
+    """
+    Abre uma janela para o usuário selecionar uma pasta com o mouse.
+    """
+    root = Tk()
+    root.withdraw()  # Oculta a janela principal
+    root.attributes('-topmost', True)  # Garante que a janela fique em primeiro plano
+    caminho = filedialog.askdirectory(title="Selecione a pasta com os arquivos XML ou ZIP")
+    return caminho
 #data = ExtratoNfce()
 
 def main():
@@ -71,7 +79,11 @@ def main():
         
     }
 
-    pasta = input("Digite o caminho da pasta com os XMLs (e ZIPs): ").strip()
+    pasta = selecionar_pasta()
+
+    if not pasta:
+        print("Nenhuma pasta foi selecionada. Encerrando...")
+        return
 
     data = ExtratoNfce()
     resultado = data.processar_pasta(pasta, campos)
