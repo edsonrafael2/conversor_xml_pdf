@@ -70,7 +70,7 @@ def selecionar_pasta():
     return caminho
 #data = ExtratoNfce()
 
-def main():
+#def main():
     # Dicionário com os campos que quero extrair e o caminho até eles
     campos = {
         "Nome do Emitente": ("emit", "xNome"),
@@ -89,8 +89,10 @@ def main():
     resultado = data.processar_pasta(pasta, campos)
 
     total_nfe = 0
+    total_itens = 0
     print("\n=== Resultados ===\n")
     for item in resultado:
+        total_itens += 1
         for chave, valor in item.items():
             print(f"{chave}: {valor}")
         print("-" * 40)
@@ -101,20 +103,10 @@ def main():
             pass
 
     print(f"\nValor Total de Todas as Notas: R$ {total_nfe:.2f}")
+    print()
+    print(f"Total de Itens {total_itens}")
+    print()
 
-    # dados = data.extrair_campos_nfe("1 - nfe.xml", campos)
-    # total_nfe = 0
+   
 
-    # # Exibindo os dados
-    # print()
-    # for chave, valor in dados.items():
-    #     if chave in "Valor da Nota":
-    #         total_nfe += float(valor)
-    #     print(f"{chave}: {valor}")
-
-
-    # print()
-    # print(f"Valor total {total_nfe:.2f}")
-
-
-main()
+#main()
